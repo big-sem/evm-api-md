@@ -131,7 +131,7 @@ responce:
 
 response:
 
-```json
+```ts
 {
   "replenishment": {
     "status": "pending", // "pending" | "success" | "error" | "canceled"
