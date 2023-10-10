@@ -63,7 +63,7 @@ query:
 
 response:
 
-```json
+```ts
 [
   {
     "_id": "64f85c8bfcb2a22c09a6fdc0",
