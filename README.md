@@ -6,9 +6,9 @@
 
 body:
 
-```json
+```ts
 {
-  "phone": "+976 8666 1488"
+  phone: "+976 8666 1488"
 }
 ```
 
@@ -18,28 +18,29 @@ response: 200
 
 body:
 
-```json
+```ts
 {
-  "phone": "+976 8666 1488",
-  "code": "6969"
+  phone: "+976 8666 1488",
+  code: "6969"
 }
 ```
 
 response:
 
-```json
+```ts
 {
-  "token": "some bearer token string",
-  "profile": {
-    "name": "",
-    "email": "",
-    "phone": "+976 8666 1488"
+  token: "some bearer token string",
+  profile: {
+    name: "",
+    email: "",
+    phone: "+976 8666 1488",
+    balance: 0,
   },
-  "nats": {
-    "servers": "nats.server.url:8443",
-    "topic": "some-topic",
-    "user": "user",
-    "pass": "pass"
+  nats: {
+    servers: "nats.server.url:8443",
+    topic: "some-topic",
+    user: "user",
+    pass: "pass"
   }
 }
 ```
@@ -66,12 +67,12 @@ response:
 ```ts
 [
   {
-    "_id": "64f85c8bfcb2a22c09a6fdc0",
-    "deviceId": "XXX-XXX",
-    "price": 8841,
-    "waitingPrice": 1234,
-    "location": [106.922542, 47.921084], //Longitude, Latitude
-    "status": "Idle", // 'Idle' | 'Busy' | 'Repair' | 'Error'
+    _id: ObjectId,
+    deviceNumber: string,
+    price: number,
+    waitingPrice: number,
+    location: [number, number], //Longitude, Latitude
+    state: 'Idle' | 'Busy' | 'Repair' | 'Error'
   },
   ...
 ]
@@ -88,8 +89,33 @@ response: 200
 
 ### Post /api/devices/:id/finish
 
-response 200
+response: Purchase id
 
+```ts
+{ 
+  id: "12d76c8bfca2a22c07a6fca1"
+}
+```
+
+## Purchases
+
+### Post /api/purchases/:id/feedback
+
+params: `id` is purchase id obtained from request above
+
+body:
+
+```ts
+{
+  feedback: {
+    score: number, // 1-5
+    description: string
+  }
+}
+```
+
+response: 200
+*example*: /api/purchases/12d76c8bfca2a22c07a6fca1/feedback
 
 ## Balance
 
@@ -97,29 +123,29 @@ response 200
 
 body:
 
-```json
+```ts
 {
-  "amount": 10069
+  amount: 10069
 }
 ```
 
 responce:
 
-```json
+```ts
 {
-  "invoice_id": "e887c58b-7df2-4fe1-960c-6ab09b121488",
-  "url": "https://s.qpay.mn/PHEc-oCO_O"
+  invoice_id: "e887c58b-7df2-4fe1-960c-6ab09b121488",
+  url: "https://s.qpay.mn/PHEc-oCO_O"
 }
 ```
 </br>
 
 **Note:** after successful payment, the following message will be emitted from server:
 
-```json
+```ts
 {
-  "replenishment": {
-    "status": "success",
-    "amount": 10069
+  replenishment: {
+    status: "success",
+    amount: 10069
   }
 }
 ```
@@ -133,8 +159,8 @@ response:
 
 ```ts
 {
-  "replenishment": {
-    "status": "pending", // "pending" | "success" | "error" | "canceled"
-    "amount": 10069
+  replenishment: {
+    status: 'pending' | 'success' | 'error' | 'canceled'
+    amount: number
   }
 }
