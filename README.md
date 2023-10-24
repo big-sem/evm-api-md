@@ -45,7 +45,7 @@ response:
 }
 ```
 
-**Note:** NATS is used as message broker, consider using [this package](https://pub.dev/packages/dart_nats)
+**Note:** NATS is used as event bus, consider using [this package](https://pub.dev/packages/dart_nats)
 
 ## Chargers
 
