@@ -99,9 +99,51 @@ response: Purchase id
 
 ## Purchases
 
+### Get /api/payment-options
+
+responce:
+
+```ts
+[
+  {
+    option: string,
+    icon: string,
+    title: string,
+    disabled: true
+  }
+]
+```
+
+### Post /api/purchases/:id/pay
+
+body:
+
+```ts
+{ 
+  option: string 
+}
+```
+
+responce:
+
+```ts
+//EVM
+{
+  option: 'EVM',
+  invoice_id: string,
+}
+//QPAY
+{
+  option: 'QPAY',
+  invoice_id: string,
+  url: string
+}
+//Other payment options are disabled for now
+```
+
 ### Post /api/purchases/:id/feedback
 
-params: `id` is purchase id obtained from request above
+params: `id` is purchase id obtained from the request above
 
 body:
 
@@ -125,21 +167,25 @@ body:
 
 ```ts
 {
-  amount: 10069
+  amount: number,
+  option: string
 }
 ```
 
 responce:
 
 ```ts
+//QPAY
 {
-  invoice_id: "e887c58b-7df2-4fe1-960c-6ab09b121488",
-  url: "https://s.qpay.mn/PHEc-oCO_O"
+  option: 'QPAY'
+  invoice_id: string,
+  url: string
 }
+//Other payment options are disabled for now
 ```
 </br>
 
-**Note:** after successful payment, the following message will be emitted from server:
+**Note:** after successful payment, the following message will be emitted from the server:
 
 ```ts
 {
@@ -151,9 +197,18 @@ responce:
 ```
 
 
-### Post /api/customer/replenishment/:invoice_id
+### Post /api/customer/replenishment/
 
 **Desc:** for manually checking the replenishment status
+
+body:
+
+```ts
+{
+  invoice_id: string
+  option: string
+}
+```
 
 response:
 
