@@ -116,6 +116,8 @@ responce:
 
 ### Post /api/purchases/:id/pay
 
+params: `id` is purchase id obtained from the request above
+
 body:
 
 ```ts
@@ -130,7 +132,7 @@ responce:
 //EVM
 {
   option: 'EVM',
-  invoice_id: string,
+  invoice_id: string, //purchase id
 }
 //QPAY
 {
@@ -141,9 +143,19 @@ responce:
 //Other payment options are disabled for now
 ```
 
-### Post /api/purchases/:id/feedback
+**Note:** use url_launcher (or any other similar package) to open url for payment. After successful payment, the following message will be emitted from the server:
 
-params: `id` is purchase id obtained from the request above
+```ts
+{
+  payment: {
+    status: 'success' | 'fail',
+  }
+}
+```
+
+### Post /api/purchases/:id/status
+
+### Post /api/purchases/:id/feedback
 
 body:
 
@@ -185,7 +197,7 @@ responce:
 ```
 </br>
 
-**Note:** after successful payment, the following message will be emitted from the server:
+**Note:** after successful replenishment, the following message will be emitted from the server:
 
 ```ts
 {
@@ -205,8 +217,8 @@ body:
 
 ```ts
 {
-  invoice_id: string
   option: string
+  invoice_id: string
 }
 ```
 
