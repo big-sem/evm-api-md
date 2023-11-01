@@ -2,7 +2,7 @@
 
 ## Authentication
 
-### POST /api/user/otp-request
+### POST /api/v1/user/otp-request
 
 body:
 
@@ -14,7 +14,7 @@ body:
 
 response: 200
 
-### POST /api/user/otp-check
+### POST /api/v1/user/otp-check
 
 body:
 
@@ -49,7 +49,7 @@ response:
 
 ## Chargers
 
-### GET /api/devices/by-location
+### GET /api/v1/devices/by-location
 
 query:
 
@@ -78,16 +78,16 @@ response:
 ]
 ```
 
-*example*: /api/devices/by-location?bottom-left-longitude=69.9&bottom-left-latitude=69.9&upper-right-longitude=127&upper-right-latitude=80
+*example*: /api/v1/devices/by-location?bottom-left-longitude=69.9&bottom-left-latitude=69.9&upper-right-longitude=127&upper-right-latitude=80
 
 </br>
 
-### Post /api/devices/:id/start
+### Post /api/v1/devices/:id/start
 
 response: 200
 
 
-### Post /api/devices/:id/finish
+### Post /api/v1/devices/:id/finish
 
 response: Purchase id
 
@@ -99,7 +99,7 @@ response: Purchase id
 
 ## Purchases
 
-### Get /api/payment-options
+### Get /api/v1/payment-options
 
 responce:
 
@@ -114,7 +114,7 @@ responce:
 ]
 ```
 
-### Post /api/purchases/:id/pay
+### Post /api/v1/purchases/:id/pay
 
 params: `id` is purchase id obtained from the request above
 
@@ -153,9 +153,9 @@ responce:
 }
 ```
 
-### Post /api/purchases/:id/status
+### Post /api/v1/purchases/:id/status
 
-### Post /api/purchases/:id/feedback
+### Post /api/v1/purchases/:id/feedback
 
 body:
 
@@ -169,11 +169,11 @@ body:
 ```
 
 response: 200
-*example*: /api/purchases/12d76c8bfca2a22c07a6fca1/feedback
+*example*: /api/v1/purchases/12d76c8bfca2a22c07a6fca1/feedback
 
 ## Balance
 
-### Post /api/customer/replenish
+### Post /api/v1/customer/replenish
 
 body:
 
@@ -209,7 +209,7 @@ responce:
 ```
 
 
-### Post /api/customer/replenishment/
+### Post /api/v1/customer/replenishment/
 
 **Desc:** for manually checking the replenishment status
 
