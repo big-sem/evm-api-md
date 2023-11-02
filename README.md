@@ -8,7 +8,7 @@ body:
 
 ```ts
 {
-  phone: "+976 8666 1488"
+  phone: "+976 8666 1488" //international format
 }
 ```
 
@@ -20,8 +20,8 @@ body:
 
 ```ts
 {
-  phone: "+976 8666 1488",
-  code: "6969"
+  phone: string
+  code: string //0000 - for dev
 }
 ```
 
@@ -29,18 +29,18 @@ response:
 
 ```ts
 {
-  token: "some bearer token string",
+  token: string
   profile: {
-    name: "",
-    email: "",
-    phone: "+976 8666 1488",
-    balance: 0,
+    name: string
+    email: string
+    phone: string
+    balance: number
   },
   nats: {
-    servers: "nats.server.url:8443",
-    topic: "some-topic",
-    user: "user",
-    pass: "pass"
+    servers: string
+    topic: string
+    user: string
+    pass: string
   }
 }
 ```
@@ -67,11 +67,11 @@ response:
 ```ts
 [
   {
-    _id: ObjectId,
-    deviceNumber: string,
-    price: number,
-    waitingPrice: number,
-    location: [number, number], //Longitude, Latitude
+    _id: ObjectId
+    deviceNumber: string
+    price: number
+    waitingPrice: number
+    location: [number, number] //Longitude, Latitude
     state: 'Idle' | 'Busy' | 'Repair' | 'Error'
   },
   ...
@@ -106,9 +106,9 @@ responce:
 ```ts
 [
   {
-    option: string,
-    icon: string,
-    title: string,
+    option: string
+    icon: string
+    title: string
     disabled: true
   }
 ]
@@ -131,13 +131,13 @@ responce:
 ```ts
 //EVM
 {
-  option: 'EVM',
-  invoice_id: string, //purchase id
+  option: 'EVM'
+  invoiceId: string //purchase id
 }
 //QPAY
 {
-  option: 'QPAY',
-  invoice_id: string,
+  option: 'QPAY'
+  invoiceId: string
   url: string
 }
 //Other payment options are disabled for now
@@ -148,12 +148,32 @@ responce:
 ```ts
 {
   payment: {
-    status: 'success' | 'fail',
+    status: 'success' | 'fail'
+    amount: number
   }
 }
 ```
 
 ### Post /api/v1/purchases/:id/status
+
+**Desc:** for manually checking the payment status
+
+body:
+
+```ts
+{
+  invoiceId: string
+}
+```
+
+response:
+
+```ts
+{
+  status: 'pending' | 'success' | 'error' | 'canceled'
+  amount: number
+}
+```
 
 ### Post /api/v1/purchases/:id/feedback
 
@@ -179,7 +199,7 @@ body:
 
 ```ts
 {
-  amount: number,
+  amount: number
   option: string
 }
 ```
@@ -190,7 +210,7 @@ responce:
 //QPAY
 {
   option: 'QPAY'
-  invoice_id: string,
+  invoiceId: string
   url: string
 }
 //Other payment options are disabled for now
@@ -202,7 +222,7 @@ responce:
 ```ts
 {
   replenishment: {
-    status: "success",
+    status: "success"
     amount: 10069
   }
 }
@@ -217,8 +237,7 @@ body:
 
 ```ts
 {
-  option: string
-  invoice_id: string
+  invoiceId: string
 }
 ```
 
@@ -226,8 +245,6 @@ response:
 
 ```ts
 {
-  replenishment: {
-    status: 'pending' | 'success' | 'error' | 'canceled'
-    amount: number
-  }
+  status: 'pending' | 'success' | 'error' | 'canceled'
+  amount: number
 }
