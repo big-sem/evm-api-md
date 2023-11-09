@@ -146,11 +146,10 @@ responce:
 **Note:** use url_launcher (or any other similar package) to open url for payment. After successful payment, the following message will be emitted from the server:
 
 ```ts
+//{subject}.PAYMENT
 {
-  payment: {
-    status: 'success' | 'fail'
-    amount: number
-  }
+  status: 'success' | 'fail'
+  amount: number
 }
 ```
 
@@ -220,11 +219,10 @@ responce:
 **Note:** after successful replenishment, the following message will be emitted from the server:
 
 ```ts
+//{subject}.REPLENISHMENT
 {
-  replenishment: {
-    status: "success"
-    amount: 10069
-  }
+  status: "success"
+  amount: 10069
 }
 ```
 
