@@ -47,6 +47,18 @@ response:
 
 **Note:** NATS is used as event bus, consider using [this package](https://pub.dev/packages/dart_nats)
 
+### POST /api/v1/customer/update-notification-token
+
+body:
+
+```ts
+{
+  FCMToken: string
+}
+```
+
+response: 200
+
 ## Chargers
 
 ### GET /api/v1/devices/by-location
@@ -86,6 +98,18 @@ response:
 
 response: 200
 
+This message will be emitted from the server every 2-5 seconds
+
+```ts
+//{subject}.CHARGING
+{
+  energy: number
+  waitingTime: number
+  amount: number
+}
+```
+
+If server
 
 ### Post /api/v1/devices/:id/finish
 
@@ -101,7 +125,7 @@ response: Purchase id
 
 ### Get /api/v1/payment-options
 
-responce:
+response:
 
 ```ts
 [
@@ -126,7 +150,7 @@ body:
 }
 ```
 
-responce:
+response:
 
 ```ts
 //EVM
@@ -203,7 +227,7 @@ body:
 }
 ```
 
-responce:
+response:
 
 ```ts
 //QPAY
