@@ -36,6 +36,42 @@ response:
     phone: string
     balance: number
   },
+  device?: {
+    _id: string
+    deviceNumber: string
+    location: [number, number] //array of lenght 2
+    waitingPrice: number
+    price: number
+  }
+  nats: {
+    servers: string
+    topic: string
+    user: string
+    pass: string
+  }
+}
+```
+
+### GET /api/v1/user/me
+
+response:
+
+```ts
+{
+  token: string
+  profile: {
+    name: string
+    email: string
+    phone: string
+    balance: number
+  },
+  device?: {
+    _id: string
+    deviceNumber: string
+    location: [number, number] //array of lenght 2
+    waitingPrice: number
+    price: number
+  }
   nats: {
     servers: string
     topic: string
@@ -79,7 +115,7 @@ response:
 ```ts
 [
   {
-    _id: ObjectId
+    _id: string
     deviceNumber: string
     price: number
     waitingPrice: number
