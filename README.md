@@ -95,6 +95,20 @@ body:
 
 response: 200
 
+### POST /api/v1/customer/update-info
+
+body
+
+```ts
+{
+    name: string
+    email: string
+}
+```
+
+response: 200
+
+
 ## Chargers
 
 ### GET /api/v1/devices/by-location
@@ -248,7 +262,21 @@ body:
 ```
 
 response: 200
+
 *example*: /api/v1/purchases/12d76c8bfca2a22c07a6fca1/feedback
+
+### Get /api/v1/purchases
+
+params:
+
+```ts
+{
+  page: number // from 1
+  'page-size': number //optional, 50 by default
+}
+```
+
+response: **check postman**
 
 ## Balance
 
