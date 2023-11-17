@@ -52,7 +52,7 @@ response:
 }
 ```
 
-### GET /api/v1/user/me
+### POST /api/v1/user/me
 
 response:
 
@@ -207,6 +207,7 @@ response:
 {
   option: 'EVM'
   invoiceId: string //purchase id
+  newBalance: number
 }
 //QPAY
 {
